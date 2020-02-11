@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Listing;
 use Illuminate\Http\Request;
 
-class CrudController extends Controller
+class ListingController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,6 +24,9 @@ class CrudController extends Controller
      */
     public function index()
     {
+        //display users list 10 at a time
+        $listings = Listing::paginate(10);
+        return view('listing.index')->with('listings',$listings);
     }
 
     /**

@@ -21,14 +21,7 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'gender' =>$faker->randomElement(['male','female']) ,
-        'phone' =>$faker->unique()->phoneNumber,        
         'email' => $faker->unique()->safeEmail,
-        'address'=> $faker->address,
-        'nationality'=>$faker->country,
-        'dob'=>$faker->dateTimeAD,
-        'education_background'=>$faker->randomElement(['engineering','it','science','management']),
-        'preferred_mode'=>$faker->randomElement(['phone','email','none']),
         'password' => Hash::make('asdf'), // password
         'remember_token' => Str::random(10),
 
