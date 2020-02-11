@@ -63,9 +63,7 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {//validate the form data
-     //process the data and submit it
-     //if successful we want to redirect
+    {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

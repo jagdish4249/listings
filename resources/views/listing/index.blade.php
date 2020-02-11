@@ -8,6 +8,9 @@
                     Listings
                 </div>
                 <div class="card-body">
+                    <a class="btn btn-sm btn-primary  btn-icon-only" href="{{route('listing.create')}}">
+                        <i class="fa fa-plus"> Add listing </i>
+                    </a>
                     <table class="table table-striped table-inverse table-responsive" width="100%">
                         <thead class="thead-inverse">
                         <tr>

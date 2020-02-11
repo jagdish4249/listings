@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('listing.index');
 });
 
 Auth::routes();
@@ -20,4 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('listing', 'ListingController');
+
+Route::get('/test',function(){
+    return view('test');
+});
 
