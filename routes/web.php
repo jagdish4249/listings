@@ -20,4 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('listing', 'ListingController');
-Route::resource('crud', 'CrudController');
+
