@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Listing;
+use Carbon\Traits\Timestamp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ListingController extends Controller
 {
@@ -25,7 +27,7 @@ class ListingController extends Controller
     public function index()
     {
         //display users list 10 at a time
-        $listings = Listing::paginate(10);
+        $listings = Listing::orderBy('id','desc')->paginate(10);
         return view('listing.index')->with('listings',$listings);
     }
 
@@ -47,7 +49,39 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
+    //validate the form data
+    $validator =  Validator::make($request->all(), [
+        'name' => 'required| string |max:255',
+        'gender' => 'required',
+        'phone' => 'required|string|max:15|unique:users',
+        'address' => 'required|string',
+        'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
+        'nationality' =>'required|string',
+        'dob' => 'required',
+        'education_background' => 'string',
+        'preferred_mode' => 'required',
+    ]);
+    //process the data and submit it
+        $listing = new Listing();
+    //gets all the colums from database using table name as parameter
+        $columns = get_column_list('listings');
+    //skipping id,timestamps columns
+        unset($columns[0],$columns[11],$columns[12]); 
+     
+        foreach($columns as $key => $col_name){
+                settype($col_name,'string');
+                $listing->$col_name = $request->$col_name;
+
+        }
     
+    //if successful redirect
+       if($listing->save()){
+        $request-> session()->flash('status', 'Task was successful!');
+        return redirect() -> route('listing');
+    }else{
+        $request-> session()->flash('error', 'Something went wrong');
+        return redirect() -> route('listing.create'); 
+    }
     }
 
     /**
@@ -94,4 +128,6 @@ class ListingController extends Controller
     {
         //
     }
+
+   
 }

@@ -21,20 +21,19 @@
 
                                   
                             <div class="form-group row">
-                              
                                 <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
                                 <div class="col-md-6">
                                     <?php 
                                 $genders = ['Male','Female','Others'];
                                 array_unshift($genders, 1);  
                                 unset($genders[0]);  
+                                
                                 ?>
                                 @foreach($genders as $key => $gender)
-                                <input type="radio"  name="gender" id="gender_id" value="{{ $key }}" {{old('gender_id')==$key?'checked':''}} >                               
+                                <input type="radio"  name="gender" id="gender" value="{{ $key }}" {{old('gender')==$key?'checked':''}} >                               
                                  {{ $gender }}
                                 @endforeach
-                                </div>
-                                
+                                </div>     
                             </div>
 
                             <div class="form-group row">
@@ -61,17 +60,14 @@
                                 </div>
                             </div>
 
-                            
-
                             <div class="form-group row">
                                 <label for="nationality" class="col-md-4 col-form-label text-md-right">Nationality</label>
                                <div class="col-md-6">
-                                    <select name="nationality" id="val-nationality" class="select2 form-control " style="width: 100%;" data-placeholder="Choose one..">
-                                    {{ get_country_list(old('country')) }}                                                                          
+                                    <select name="nationality" id="nationality" class="select2 form-control " style="width: 100%;" data-placeholder="Choose one..">
+                                    {{ get_country_list(old('nationality')) }}                                                                          
                                     </select>
                                     @include('layouts.error',array('data'=>'nationality'))
-                                </div> 
-                               
+                                </div>     
                             </div>
 
                             <div class="form-group row">
@@ -82,32 +78,30 @@
                                 </div>
                             </div> 
                            
-
                             <div class="form-group row">
-                                <label for="education" class="col-md-4 col-form-label text-md-right">Education Background</label>
+                                <label for="education_background" class="col-md-4 col-form-label text-md-right">Education Background</label>
                                 <div class="col-md-6">
-                                    <input id="education" type="text" class="form-control @error('name') is-invalid @enderror" name="education" value="{{ old('education') }}" required autocomplete="education" autofocus>
-                                    @include('layouts.error',array('data'=>'education'))
+                                    <input id="education_background" type="text" class="form-control @error('name') is-invalid @enderror" name="education_background" value="{{ old('education_background') }}" required autocomplete="education_background" autofocus>
+                                    @include('layouts.error',array('data'=>'education_background'))
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="mode" class="col-md-4 col-form-label text-md-right">Preferred mode of contact</label>
+                                <label for="preferred_mode" class="col-md-4 col-form-label text-md-right">Preferred mode of contact</label>
                                 <div class="col-md-6">
                                     <?php
-                                    $modes = ['phone','email','none'];
+                                    $modes = ['Phone','Email','None'];
                                     array_unshift($modes,1);
                                     unset($modes[0]);
                                     ?>
                                     @foreach($modes as $key=>$mode)
-                                    <input type="radio" name="mode" id="mode" value="{{$key}}" {{old('mode')==$key?'checked':''}}>
+                                    <input type="radio" name="preferred_mode" id="preferred_mode" value="{{$key}}" {{old('preferred_mode')==$key?'checked':''}}>
                                     {{$mode}}
                                     @endforeach
-                                     @include('layouts.error',array('data'=>'mode'))
+                                     @include('layouts.error',array('data'=>'preferred_mode'))
                                 </div>
                             </div>
-                          
-                          
+                             
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

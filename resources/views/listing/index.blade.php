@@ -31,14 +31,30 @@
                         @foreach($listings as $listing)
                             <tr>
                                 <td>{{ucfirst($listing->name)}}</td>
-                                <td>{{ucfirst($listing->gender)}}</td>
+                                <td>
+                                    @if ($listing->gender==='1')
+                                    {{"Male"}}  
+                                    @elseif ($listing->gender==='2')
+                                    {{"Female"}}
+                                    @else 
+                                    {{"Others"}}
+                                    @endif
+                                </td>
                                 <td>{{$listing->phone}}</td>
                                 <td>{{ucfirst($listing->address)}}</td>
                                 <td>{{$listing->email}}</td>
                                 <td>{{ucfirst($listing->nationality)}}</td>
                                 <td>{{ date('d M, Y', strtotime($listing->dob)) }}</td>
                                 <td>{{ucfirst($listing->education_background)}}</td>
-                                <td>{{ucfirst($listing->preferred_mode)}}</td>
+                                <td>
+                                    @if ($listing->preferred_mode==='1')
+                                    {{"Phone"}}  
+                                    @elseif ($listing->preferred_mode==='2')
+                                    {{"Email"}}
+                                    @else 
+                                    {{"None"}}
+                                    @endif
+                                </td>
 
                             </tr>
                         @endforeach

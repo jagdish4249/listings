@@ -17,12 +17,16 @@
 
     <!-- style -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    //datepicker css
     <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+    //select2 css
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Scripts -->
+    //datepicker scripts
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/jquery-ui.min.js')}}"></script>
+    //select2 scripts
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
   
@@ -85,11 +89,10 @@
       
         <main class="py-4">
             @yield('content')
-            
         </main>
        
     </div>
-  
+  //yields the required scripts
     @yield('js_after')
   
 </body>

@@ -20,7 +20,7 @@ class Listing extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'dob' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'dob' => 'datetime',
+    // ];
 }
