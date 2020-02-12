@@ -27,7 +27,8 @@ class EditDobColumn extends Migration
     public function down()
     {
         Schema::table('listings', function (Blueprint $table) {
-            $table->date('dob')->change();
+            $table ->dropColumn('dob');
+            
         });
     }
 }
