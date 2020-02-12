@@ -23,9 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('listing', 'ListingController');
 
-Route::get('/test',function(){
-    return view('test');
-});
 
 Route::get('/listings/search', 'ListingController@search')->name('listing.search');
 
