@@ -77,7 +77,7 @@ class ListingController extends Controller
     //if successful redirect
        if($listing->save()){
         $request-> session()->flash('status', 'Task was successful!');
-        return redirect() -> route('listing');
+        return redirect() -> route('listing.index');
     }else{
         $request-> session()->flash('error', 'Something went wrong');
         return redirect() -> route('listing.create'); 

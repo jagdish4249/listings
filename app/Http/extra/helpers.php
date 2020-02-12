@@ -21,9 +21,12 @@ if (!function_exists('get_column_list')) {
     {   
         $dbname = env('DB_DATABASE');
       
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
+        // $servername = "localhost";
+        // $username = "root";
+        // $password = "";
+        $servername = env('DB_HOST');
+        $username = env('DB_USERNAME');
+        $password = env('DB_PASSWORD');
         $conn = mysqli_connect($servername, $username, $password);
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
