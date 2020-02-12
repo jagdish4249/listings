@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,4 +26,6 @@ Route::resource('listing', 'ListingController');
 Route::get('/test',function(){
     return view('test');
 });
+
+Route::get('/listings/search', 'ListingController@search')->name('listing.search');
 

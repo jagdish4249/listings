@@ -2,15 +2,20 @@
 
 @section('content')
     <div class="container">
+        <h1>Listings</h1>
         <div class="row justify-content">
             <div class="col-md-12">
-                <div class="card-header">
-                    Listings
-                </div>
-                <div class="card-body">
-                    <a class="btn btn-sm btn-primary  btn-icon-only" href="{{route('listing.create')}}">
-                        <i class="fa fa-plus"> Add listing </i>
+               
+                <div class="panel">
+                    <a class="btn btn-sm btn-primary  btn-lg" href="{{route('listing.create')}}">
+                         Add more listing 
                     </a>
+                    <a class="btn btn-sm btn-primary  btn-lg float-right" href="{{route('listing.search')}}">
+                         Search for a listing 
+                    </a>   
+                </div>
+          
+               <hr/>
                     <table class="table table-striped table-inverse table-responsive" width="100%">
                         <thead class="thead-inverse">
                         <tr>
@@ -58,13 +63,10 @@
 
                             </tr>
                         @endforeach
-
                         </tbody>
-
                     </table>
-                    <span style="align: center">{{$listings->links()}}</span>
-
-                </div>
+                    <div class="text-center">{{$listings->links()}}</div>
+                
             </div>
         </div>
     </div>

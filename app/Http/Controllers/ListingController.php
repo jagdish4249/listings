@@ -129,5 +129,44 @@ class ListingController extends Controller
         //
     }
 
+    public function getListing(Request $request)
+    {
+    	// if ( $request->input('showdata') ) {
+    	//     return Listing::orderBy('id', 'desc')->get();
+
+    	// }
+          
+        $columns = get_column_list('listings');
+        $column = '1';
+        $search_input = $request->input('search');
+
+        $query = Listing::select('name', 'email', 'phone')->orderBy($columns[$column]);
+
+        dd($query);
+        if ($search_input) {
+            $query->where(function($query) use ($search_input) {
+                $query->where('name', 'like', '%' . $search_input . '%');
+              
+            });
+        }else{
+            return redirect()->route('listing.index');
+        }
+        
+        $listings = $query->paginate(10);
+    
+        return view('listing.index')->with('listings',$listings);
+        // return ['data' => $listings];
+    }
+
+    public function search(Request $request){
+        if($request->has('search')){
+            $request->flashOnly('search');
+            $results = Listing::search($request->search)->paginate(10);
+        }else{
+            $results= [];
+        }
+        return view('listing.search')->with('results',$results);
+
+    }
    
 }
