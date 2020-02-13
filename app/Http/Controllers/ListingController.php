@@ -60,26 +60,30 @@ class ListingController extends Controller
         'preferred_mode' => 'required',
     ]);
     //process the data and submit it
+
         $listing = new Listing();
         $listing->name = $request->name;
         $listing->gender = $request->gender;
         $listing->phone =$request->phone;
+
         $listing->address = $request->address;
         $listing->email = $request->email;
         $listing->nationality = $request->nationality;
         $listing->dob = $request->dob;
         $listing->education_background = $request->education_background;
         $listing->preferred_mode = $request->preferred_mode;
+
               
+
 
     //if successful redirect
        if($listing->save()){
         $request-> session()->flash('status', 'Task was successful!');
         return redirect() -> route('listing.index');
-    }else{
-        $request-> session()->flash('error', 'Something went wrong');
-        return redirect() -> route('listing.create'); 
-    }
+        }else{
+            $request-> session()->flash('error', 'Something went wrong');
+            return redirect() -> route('listing.create'); 
+        }
     }
 
     /**
@@ -126,6 +130,8 @@ class ListingController extends Controller
     {
         //
     }
+
+
 
     public function search(Request $request){
         if($request->has('search')){
