@@ -26,9 +26,7 @@ class ListingController extends Controller
      */
     public function index()
     {
-        //display users list 10 at a time
-        $listings = Listing::orderBy('id','desc')->paginate(10);
-        return view('listing.index')->with('listings',$listings);
+        return view('listing.searchjs');
     }
 
     /**
@@ -140,4 +138,6 @@ class ListingController extends Controller
 
     }
    
+   
+
 }

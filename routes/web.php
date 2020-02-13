@@ -19,10 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('listing', 'ListingController')->except('show','edit','update','destroy');
 
-Route::resource('listing', 'ListingController');
-
-
+//not used but kept for future reference to use without vue
 Route::get('/listings/search', 'ListingController@search')->name('listing.search');
+
+
 
