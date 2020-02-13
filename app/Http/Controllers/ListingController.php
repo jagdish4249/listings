@@ -26,9 +26,7 @@ class ListingController extends Controller
      */
     public function index()
     {
-        //display users list 10 at a time
-        $listings = Listing::orderBy('id','desc')->paginate(10);
-        return view('listing.index')->with('listings',$listings);
+        return view('listing.searchjs');
     }
 
     /**
@@ -62,18 +60,22 @@ class ListingController extends Controller
         'preferred_mode' => 'required',
     ]);
     //process the data and submit it
-        $listing = new Listing();      
-        $listing->name = $request->name;      
+
+        $listing = new Listing();
+        $listing->name = $request->name;
         $listing->gender = $request->gender;
-        $listing->phone = $request->phone;
+        $listing->phone =$request->phone;
+
         $listing->address = $request->address;
         $listing->email = $request->email;
         $listing->nationality = $request->nationality;
         $listing->dob = $request->dob;
         $listing->education_background = $request->education_background;
         $listing->preferred_mode = $request->preferred_mode;
-        
-    
+
+              
+
+
     //if successful redirect
        if($listing->save()){
         $request-> session()->flash('status', 'Task was successful!');
@@ -129,7 +131,8 @@ class ListingController extends Controller
         //
     }
 
-   
+
+
     public function search(Request $request){
         if($request->has('search')){
             $request->flashOnly('search');
@@ -141,4 +144,6 @@ class ListingController extends Controller
 
     }
    
+   
+
 }
