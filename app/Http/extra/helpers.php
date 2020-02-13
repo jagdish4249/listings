@@ -16,35 +16,35 @@ if (!function_exists('get_country_list')) {
 };
 
 //generate the list of columns from database
-if (!function_exists('get_column_list')) {
-    function get_column_list($tablename)
-    {   
-        $dbname = env('DB_DATABASE');
+// if (!function_exists('get_column_list')) {
+//     function get_column_list($tablename)
+//     {   
+//         $dbname = env('DB_DATABASE');
       
-        // $servername = "localhost";
-        // $username = "root";
-        // $password = "";
-        $servername = env('DB_HOST');
-        $username = env('DB_USERNAME');
-        $password = env('DB_PASSWORD');
-        $conn = mysqli_connect($servername, $username, $password);
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-           }
-      $sql = " SELECT column_name FROM information_schema.columns WHERE table_schema='$dbname' AND table_name='$tablename'";
-      $result = mysqli_query($conn, $sql);
-           $column_list = [];
-        if (mysqli_num_rows($result) >0) {
-        // output data of each row
-            while($row = mysqli_fetch_assoc($result)) {
-            array_push($column_list,$row["column_name"]);
-            }
-        } else {
-        echo "0 results";
-            }
-         mysqli_close($conn);
-        return $column_list;
-        }
-    }
+//         // $servername = "localhost";
+//         // $username = "root";
+//         // $password = "";
+//         $servername = env('DB_HOST');
+//         $username = env('DB_USERNAME');
+//         $password = env('DB_PASSWORD');
+//         $conn = mysqli_connect($servername, $username, $password);
+//         if (!$conn) {
+//             die("Connection failed: " . mysqli_connect_error());
+//            }
+//       $sql = " SELECT column_name FROM information_schema.columns WHERE table_schema='$dbname' AND table_name='$tablename'";
+//       $result = mysqli_query($conn, $sql);
+//            $column_list = [];
+//         if (mysqli_num_rows($result) >0) {
+//         // output data of each row
+//             while($row = mysqli_fetch_assoc($result)) {
+//             array_push($column_list,$row["column_name"]);
+//             }
+//         } else {
+//         echo "0 results";
+//             }
+//          mysqli_close($conn);
+//         return $column_list;
+//         }
+//     }
 
 
