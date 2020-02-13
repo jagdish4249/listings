@@ -63,17 +63,17 @@ class ListingController extends Controller
     ]);
     //process the data and submit it
         $listing = new Listing();
-    //gets all the colums from database using table name as parameter
-        $columns = get_column_list('listings');
-    //skipping id,timestamps columns
-        unset($columns[0],$columns[11],$columns[12]); 
-     
-        foreach($columns as $key => $col_name){
-                settype($col_name,'string');
-                $listing->$col_name = $request->$col_name;
+        $listing->name = $request->name;
+        $listing->gender = $request->gender;
+        $listing->phone =$request->phone;
+        $listing->address = $request->address;
+        $listing->email = $request->email;
+        $listing->nationality = $request->nationality;
+        $listing->dob = $request->dob;
+        $listing->education_background = $request->education_background;
+        $listing->preferred_mode = $request->preferred_mode;
+              
 
-        }
-    
     //if successful redirect
        if($listing->save()){
         $request-> session()->flash('status', 'Task was successful!');
@@ -127,35 +127,6 @@ class ListingController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getListing(Request $request)
-    {
-    	// if ( $request->input('showdata') ) {
-    	//     return Listing::orderBy('id', 'desc')->get();
-
-    	// }
-          
-        $columns = get_column_list('listings');
-        $column = '1';
-        $search_input = $request->input('search');
-
-        $query = Listing::select('name', 'email', 'phone')->orderBy($columns[$column]);
-
-        dd($query);
-        if ($search_input) {
-            $query->where(function($query) use ($search_input) {
-                $query->where('name', 'like', '%' . $search_input . '%');
-              
-            });
-        }else{
-            return redirect()->route('listing.index');
-        }
-        
-        $listings = $query->paginate(10);
-    
-        return view('listing.index')->with('listings',$listings);
-        // return ['data' => $listings];
     }
 
     public function search(Request $request){
